@@ -1,0 +1,85 @@
+How to release VRaptor
+
+1) checkout: svn co https://vraptor2.svn.sourceforge.net/svnroot/vraptor2/trunk vraptor2
+
+2) update all poms with the right version for current release
+
+3) Release notes from jira.vraptor.org at distribution/src/site/apt/release-notes.apt
+
+4) Release comments in distribution/src/site/apt/index.apt.
+
+5) update .classpath in the distribution/src/templates/eclipse with the right vraptor version.
+
+5) build it: mvn clean install.
+Here you may experience some problems, i.e. broken tests. Fix it all and commit.
+You also may use MAVEN_OPTS=-Xmx512M mvn clean install in out of memory errors.
+
+6) check distribution/target/vraptor-<version>-all.zip (actually *.zip) for unnecessary dependencies.
+
+7) Make sure your ~/.m2/settings.xml has the configuration for vraptor.org username and password:
+
+<settings>
+    <!-- ... -->
+  <servers>
+    <server>
+      <id>vraptor.org</id>
+      <username>tomcat_username_here</username>
+      <password>tomcat_password_here</password>
+    </server>
+  </servers>
+</settings>
+
+8) deploy it: mvn deploy
+
+9) deploy the site:
+cd distribution
+mvn site:deploy
+
+9.5) remotely move all files from vraptor.org/vraptor-distribution to vraptor.org so files are in the correct place
+http://www.vraptor.org/vraptor-distribution
+http://www.vraptor.org
+
+10) tag the subversion:
+svn cp https://vraptor2.svn.sourceforge.net/svnroot/vraptor2/trunk https://vraptor2.svn.sourceforge.net/svnroot/vraptor2/tags/VRAPTOR_<VERSION>
+
+11) copy zips from distribution (distribution/target/*.zip) and from examples (examples/**/*.zip) to sourceforge and release it.
+ a) connect
+ ftp upload.sourceforge.net
+ user: anonymous
+ pass: empty
+ cd incoming
+ 
+ b) upload files
+ put vraptor-blank-project-X.Y.Z.zip
+ put vraptor-X.Y.Z-all.zip
+ put vraptor-X.Y.Z-src.zip
+ put mydvds-X.Y.Z-src.zip
+ put spring-example-X.Y.Z-src.zip
+ 
+
+ c) Create a File Release (add release) at vraptor admin page (not package)
+
+ d) submit news about file release (sf.net - vraptor2: project -> news ->submit)
+
+
+12) Re-deploy mydvds
+ 
+a) deploy
+cd examples/mydvds/target
+scp mydvds*.war tomcat@www.vraptor.org:/usr/java/webapps/vraptor.org/mydvds.war
+(ssh key must be present, better: do not put the war file directly to deploy folder of the tomcat, copy later)
+
+b) test it after 30 secs
+http://www.vraptor.org/mydvds
+ 
+c) if it doesnt work, restart tomcat
+ 
+13) close jira package version
+ 
+14) announce it
+a) guj.com.br
+b) freshmeat.net (project -> add release), user:steppat@gmail.com
+c) sf.net (project -> news -> submit), user:steppat
+d) dev.java.net (news->submit)
+e) forum vraptor
+f) user and devel list vraptor

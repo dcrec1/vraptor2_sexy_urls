@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: org.vraptor.config.ConfigurationTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.024 sec <<< FAILURE!
+testLoadWebApplicationWithAComponent(org.vraptor.config.ConfigurationTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+junit.framework.AssertionFailedError
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.assertTrue(Assert.java:20)
+	at junit.framework.Assert.assertTrue(Assert.java:27)
+	at org.vraptor.config.ConfigurationTest.testLoadWebApplicationWithAComponent(ConfigurationTest.java:71)
+

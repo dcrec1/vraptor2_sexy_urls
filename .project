@@ -1,0 +1,13 @@
+<projectDescription>
+  <name>vraptor</name>
+  <comment>mvc and ioc controller based on java 5 annotations and conventions</comment>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
