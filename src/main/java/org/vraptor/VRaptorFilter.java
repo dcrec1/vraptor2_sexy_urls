@@ -106,7 +106,6 @@ public class VRaptorFilter implements Filter {
 				throw new ServletException(ex.getCause().getMessage(), ex.getCause());
 			}
 		} catch (StaticResourceException ex) {
-			System.out.println(httpRequest.getRequestURI());
 			chain.doFilter(request, response);
 		} catch (Exception e) {
 			LOG.debug("VRaptor unexpected exception", e);
