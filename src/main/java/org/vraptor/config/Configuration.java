@@ -65,6 +65,7 @@ public class Configuration {
 	 */
 	String parseClassName(String directory, String name) {
 		if (!name.startsWith(directory)) {
+			LOG.debug(name + " doesn't start with " + directory);
 			throw new IllegalArgumentException();
 		}
 		name = name.substring(directory.length(), name.length() - DOT_CLASS.length());
